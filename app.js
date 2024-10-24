@@ -1,6 +1,7 @@
-let express = require("express");
-let cors = require("cors");
-let session = require("express-session");
+const express = require("express");
+const cors = require("cors");
+const session = require("express-session");
+const userRoutes = require("./routes/userRoutes");
 
 let app = express();
 
@@ -28,39 +29,7 @@ app.use(
   })
 );
 
-// 登录接口
-app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log("🚀 ~ app.post ~ username:", username);
-
-  try {
-    // 这里添加您的登录验证逻辑
-    if (username === "test" && password === "password") {
-      req.session.user = { id: 1, username };
-      res.json({ success: true, user: { username } });
-    } else {
-      res.status(401).json({ success: false, message: "用户名或密码错误" });
-    }
-  } catch (error) {
-    res.status(500).json({ success: false, message: "服务器错误" });
-  }
-});
-
-// 退出接口
-app.post("/api/logout", (req, res) => {
-  req.session.destroy();
-  res.clearCookie("connect.sid");
-  res.json({ success: true });
-});
-
-// 获取用户信息接口
-app.get("/api/user", (req, res) => {
-  if (req.session.user) {
-    res.json({ success: true, user: req.session.user });
-  } else {
-    res.status(401).json({ success: false, message: "未登录" });
-  }
-});
+app.use("/api/users", userRoutes);
 
 // 添加服务器启动代码
 const port = 17903;
