@@ -31,6 +31,7 @@ app.use(
 // 登录接口
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log("🚀 ~ app.post ~ username:", username);
 
   try {
     // 这里添加您的登录验证逻辑
@@ -62,7 +63,7 @@ app.get("/api/user", (req, res) => {
 });
 
 // 添加服务器启动代码
-const port = 4000;
+const port = 17903;
 app.listen(port, () => {
   console.log(`Express server running on port ${port}`);
 });
