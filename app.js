@@ -8,8 +8,8 @@ let app = express();
 // CORS 配置
 app.use(
   cors({
-    origin: "http://localhost:3000", // Next.js 前端地址
-    credentials: true, // 允许跨域携带 cookie
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 
@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.use("/api/users", userRoutes);
+app.use("/api/v1", userRoutes);
 
 // 添加服务器启动代码
 const port = 17903;

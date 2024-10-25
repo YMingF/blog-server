@@ -1,5 +1,6 @@
 {
-  "watch": ["src/"],
-  "ext": "js",
-  "ignore": ["*.test.js", "*.spec.js"]
+  "watch": ["./"],
+  "ext": "js,json",
+  "ignore": ["node_modules/", "public/"],
+  "exec": "node ./bin/www"
 }

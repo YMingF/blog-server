@@ -5,7 +5,7 @@ async function findUserByUsername(username) {
     where: {
       username: {
         contains: username,
-        mode: "insensitive", // Optional: makes the search case-insensitive
+        mode: "insensitive",
       },
     },
   });
