@@ -16,6 +16,20 @@ async function getMatchedUser(req, res) {
   }
 }
 
+async function followUser(req, res) {
+  const { followerId, followingId } = req.body;
+  await userService.followUser(followerId, followingId);
+  res.json({ success: true });
+}
+
+async function unfollowUser(req, res) {
+  const { followerId, followingId } = req.body;
+  await userService.unfollowUser(followerId, followingId);
+  res.json({ success: true });
+}
+
 module.exports = {
   getMatchedUser,
+  followUser,
+  unfollowUser,
 };

@@ -15,6 +15,20 @@ async function findUserByUsername(username) {
   });
 }
 
+async function followUser(followerId, followingId) {
+  return await prisma.follow.create({
+    data: { followerId, followingId },
+  });
+}
+
+async function unfollowUser(followerId, followingId) {
+  return await prisma.follow.delete({
+    where: { followerId_followingId: { followerId, followingId } },
+  });
+}
+
 module.exports = {
   findUserByUsername,
+  followUser,
+  unfollowUser,
 };
