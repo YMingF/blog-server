@@ -27,9 +27,28 @@ async function unfollowUser(req, res) {
   await userService.unfollowUser(followerId, followingId);
   res.json({ success: true });
 }
+async function getFollowedUsers(req, res) {
+  const { followerId } = req.body;
+
+  try {
+    const followedUsers = await userService.getFollowedUsers(followerId);
+
+    if (followedUsers) {
+      const users = followedUsers.map((user) => {
+        return user.following;
+      });
+      res.json(users);
+    } else {
+      res.json([]);
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: "服务器错误" });
+  }
+}
 
 module.exports = {
   getMatchedUser,
   followUser,
   unfollowUser,
+  getFollowedUsers,
 };
