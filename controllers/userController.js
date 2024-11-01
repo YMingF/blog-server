@@ -27,11 +27,11 @@ async function unfollowUser(req, res) {
   await userService.unfollowUser(followerId, followingId);
   res.json({ success: true });
 }
-async function getFollowedUsers(req, res) {
+async function getFollowees(req, res) {
   const { followerId } = req.body;
 
   try {
-    const followedUsers = await userService.getFollowedUsers(followerId);
+    const followedUsers = await userService.getFollowees(followerId);
 
     if (followedUsers) {
       const users = followedUsers.map((user) => {
@@ -50,5 +50,5 @@ module.exports = {
   getMatchedUser,
   followUser,
   unfollowUser,
-  getFollowedUsers,
+  getFollowees,
 };

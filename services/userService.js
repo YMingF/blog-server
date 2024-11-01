@@ -27,7 +27,7 @@ async function unfollowUser(followerId, followingId) {
   });
 }
 
-async function getFollowedUsers(followerId) {
+async function getFollowees(followerId) {
   return await prisma.follow.findMany({
     where: { followerId },
     include: {
@@ -46,5 +46,5 @@ module.exports = {
   findUserByUsername,
   followUser,
   unfollowUser,
-  getFollowedUsers,
+  getFollowees,
 };
