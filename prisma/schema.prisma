@@ -25,8 +25,8 @@ model User {
   updatedAt      DateTime  @updatedAt
   posts          Post[]   @relation("UserPosts")
   comments       Comment[] @relation("UserComments")
-  following      Follow[]  @relation("UserFollowing")
-  followers      Follow[]  @relation("UserFollowers")
+  following      Follow[]  @relation("UserFollowing") // 我关注的人列表
+  followers      Follow[]  @relation("UserFollowers") // 关注我的人列表
 }
 
 model Post {
